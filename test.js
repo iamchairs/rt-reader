@@ -15,6 +15,6 @@ DOMParser = new xmldom.DOMParser({
 });
 var dom = DOMParser.parseFromString(sampleDom);
 
-reader.read('https://www.rt.com/usa/320542-sigar-afghanistan-pentagon-waste/').then(function(article) {
-  
+reader.read('https://www.rt.com/usa/320548-obama-signs-deal-double/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=RSS').then(function(article) {
+  console.log(article);
 });

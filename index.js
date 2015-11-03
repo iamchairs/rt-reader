@@ -104,31 +104,30 @@ module.exports = (function() {
                allowedAttributes: self.cleanAttributes
             }).replace(/^\s*/, '').replace(/\s*$/, '');
 
-            var imgs = body.getElementsByTagName('img');
+            var imgs = dom.getElementsByTagName('img');
             for(var i = 0; i < imgs.length; i++) {
                var img = imgs[i];
                if(img.getAttribute('class').indexOf('media__item') !== -1) {
-
-               }
-               var srcFull = img.getAttribute('src');
-               var caption = img.getAttribute('alt');
-               if(caption === '©') {
-                  caption = Article.title;
-               }
-
-               if(srcFull) {
-                  var found = false;
-                  for(var k = 0; k < Article.images.length; k++) {
-                     if(Article.images[k].full === srcFull) {
-                        found = true;
-                     }
+                  var srcFull = img.getAttribute('src');
+                  var caption = img.getAttribute('alt');
+                  if(caption === '©') {
+                     caption = Article.title;
                   }
 
-                  if(!found) {
-                     Article.images.push({
-                        full: srcFull,
-                        caption: caption
-                     });
+                  if(srcFull) {
+                     var found = false;
+                     for(var k = 0; k < Article.images.length; k++) {
+                        if(Article.images[k].full === srcFull) {
+                           found = true;
+                        }
+                     }
+
+                     if(!found) {
+                        Article.images.push({
+                           full: srcFull,
+                           caption: caption
+                        });
+                     }
                   }
                }
             }
