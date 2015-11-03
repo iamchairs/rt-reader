@@ -94,8 +94,6 @@ module.exports = (function() {
 
             var markdown = toMarkdown(body);
 
-            console.log(markdown);
-
             Article.body.clean = bodyCleanStrings.join('\n\n');
             Article.body.markdown = markdown;
 
