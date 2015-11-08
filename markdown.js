@@ -48,6 +48,9 @@ module.exports = function(dom) {
         case 'strong':
           markdown += strong(childNode);
           break;
+        case 'iframe':
+          markdown += iframe(childNode);
+          break;
         case undefined:
           markdown += childNode.data.replace(/^\n*/, '').replace(/\n*$/, '').replace(/^ \s*/, ' ').replace(/ \s*$/, ' ');
           break;
@@ -128,12 +131,25 @@ module.exports = function(dom) {
     return '![' + alt + '](' + src + ')\n\n';
   }
 
+  function iframe(dom) {
+    var v = htmlVal(dom);
+    console.log(v);
+
+    return v;
+  }
+
   function div(dom) {
     if(dom.getAttribute('data-alt') && dom.getAttribute('data-src')) {
       return img(dom);
+    } else if(dom.getAttribute('class').indexOf('rtcode') !== -1) {
+      return read(dom);
     }
 
     return '';
+  }
+
+  function htmlVal(dom) {
+    return XMLSerializer.serializeToString(dom);
   }
 
   function textVal(dom) {
